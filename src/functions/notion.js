@@ -65,10 +65,16 @@ async function pushData(title, tags, url, description) {
 
   const body = bodyGenerator(title, tags, url, description, notionDatabaseID)
 
-  const response = await fetch(endpoint, {
+  const response = await fetch('http://localhost:8080/notion', {
     method: 'POST',
-    headers,
-    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      endpoint,
+      body,
+      headers,
+    }),
   })
 
   const data = await response.json()

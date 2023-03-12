@@ -6,26 +6,18 @@ import TextBox from '../utils/TextBox'
 import TextArea from '../utils/TextArea'
 import Button from '../utils/Button'
 import Tags from '../utils/Tags'
-import Alert from '../utils/Alert'
 
 function Output({
   response: { url = '', description = '', tags = [], title = '' },
   setResponse,
+  alertHandler: handleAlert,
 }) {
   const [isLoading, setIsLoading] = useState(false)
-  const [alert, setAlert] = useState({ title: '', message: '', type: '' })
 
   if (!url || !description || !tags.length) {
     return null
   } else if (url === '' || description === '' || tags.length === 0) {
     return null
-  }
-
-  const handleAlert = (title, message, type) => {
-    setAlert({ title, message, type })
-    setTimeout(() => {
-      setAlert({ title: '', message: '', type: '' })
-    }, 3000)
   }
 
   const submitHandler = async () => {
@@ -76,10 +68,6 @@ function Output({
         className='mt-2'
         isLoading={isLoading}
       />
-
-      {alert.title && alert.message && alert.type && (
-        <Alert title={alert.title} message={alert.message} type={alert.type} />
-      )}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import getJSON from './getJSON'
 
 const prompt = (url, description) => `Strictly generate a JSON response.
-given- URL and it's description, respond with maximum 6 relevant, lowercase, single word tags for the website, a short description & title. Also, use your knowledge of the web.
+given- URL and it's description, respond with maximum 6 relevant, lowercase, single word tags for the website, a short description & title. Also, use your knowledge of the web and url.
 URL: ${url}
 Description: ${description}
 OUTPUT FORMAT: { "tags": ["tag1", ..], "description": "", "title": "", "url": "" }
@@ -23,7 +23,7 @@ async function fetchOpenAI(url, description) {
     model: 'text-davinci-003',
     prompt: generatedPrompt,
     temperature: 0,
-    max_tokens: 500,
+    max_tokens: 1000,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,

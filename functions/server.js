@@ -40,7 +40,7 @@ app.use('*', (req, res) => {
   res.status(404).json({ message: 'Hello World!' })
 })
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   app.listen(8080, () => {
     console.log('Server is running on port 8080')
   })

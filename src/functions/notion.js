@@ -65,7 +65,15 @@ async function pushData(title, tags, url, description) {
 
   const body = bodyGenerator(title, tags, url, description, notionDatabaseID)
 
-  const response = await fetch('http://localhost:8080/notion', {
+  let internalAPI = ''
+
+  if (import.meta.env.MODE === 'development') {
+    internalAPI = 'http://localhost:8080/notion'
+  } else {
+    internalAPI = '/.netlify/functions/server/notion'
+  }
+
+  const response = await fetch(internalAPI, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

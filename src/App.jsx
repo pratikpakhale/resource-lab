@@ -4,6 +4,7 @@ import Keys from './components/Keys'
 import InputData from './components/InputData'
 import Output from './components/Output'
 import Alert from './utils/Alert'
+import Modal from './utils/Modal'
 
 function App() {
   const [response, setResponse] = useState('')

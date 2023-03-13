@@ -2,6 +2,9 @@ const express = require('express')
 const axios = require('axios')
 const cors = require('cors')
 
+const serverless = require('serverless-http')
+require('dotenv').config()
+
 const app = express()
 
 app.use(express.json())
@@ -10,11 +13,16 @@ app.use(cors())
 
 app.post('/notion', async (req, res) => {
   const { endpoint, body, headers } = req.body
-
+  console.log(req.body)
   try {
-    const response = await axios.post(endpoint, body, {
+    const config = {
+      method: 'post',
+      url: endpoint,
       headers,
-    })
+      data: body,
+    }
+
+    const response = await axios(config)
 
     const { data, status } = response
 
@@ -32,6 +40,10 @@ app.use('*', (req, res) => {
   res.status(404).json({ message: 'Hello World!' })
 })
 
-app.listen(8080, () => {
-  console.log('Server is running on port 8080')
-})
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(8080, () => {
+    console.log('Server is running on port 8080')
+  })
+} else {
+  exports.handler = serverless(app)
+}

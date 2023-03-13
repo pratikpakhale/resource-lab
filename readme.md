@@ -2,6 +2,10 @@
 
 Manage your links w/ the help of OpenAI and NotionAPI
 
+## Deployment
+
+Site is live at - [resource-lab.netlify.app](https://resource-lab.netlify.app/)
+
 ## Installation and Run
 
 Install with yarn

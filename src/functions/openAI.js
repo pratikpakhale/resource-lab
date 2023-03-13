@@ -1,7 +1,7 @@
 import getJSON from './getJSON'
 
 const prompt = (url, description) => `Strictly generate a JSON response.
-given an URL and it's description, respond with maximum 5 relevant, lowercase, single word tags for the website, a short description & title.
+given- URL and it's description, respond with maximum 6 relevant, lowercase, single word tags for the website, a short description & title. Also, use your knowledge of the web.
 URL: ${url}
 Description: ${description}
 OUTPUT FORMAT: { "tags": ["tag1", ..], "description": "", "title": "", "url": "" }

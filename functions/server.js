@@ -11,7 +11,7 @@ app.use(express.json())
 
 app.use(cors())
 
-app.post('/notion', async (req, res) => {
+app.post('/*notion', async (req, res) => {
   const { endpoint, body, headers } = req.body
   console.log(req.body)
   try {
